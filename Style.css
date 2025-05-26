@@ -1,0 +1,334 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+@font-face {
+  font-family: 'BluePrinted';
+  src: url('BluePrinted.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* === Preloader Container === */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* === Preloader Text Styling === */
+.preloader-text {
+  font-size: 2.5vw;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #000, #444, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255,255,255,0.6),
+               0 0 30px rgba(255,255,255,0.4);
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeInSlide 1s ease forwards;
+}
+
+/* === Animation Keyframes === */
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.parent-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  background-color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#lineCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  /* border: 5px solid #d61c1c; */
+
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 40px solid #e6e6e6;
+  overflow: hidden; /* Hides any accidental overflow */
+  transition: background-color 0.3s ease;
+}
+
+.clock-container {
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  z-index: 10;
+  color: #000;
+  font-family: 'Arial', sans-serif;
+  text-align: right;
+}
+
+.clock-container .clock {
+  display: flex;
+  align-items: center;
+}
+
+.clock-container li {
+  display: inline;
+  list-style: none;
+}
+
+#Date {
+  font-size: 18px;
+  margin-right: 20px;
+  font-style: italic;
+}
+
+.clock > li {
+  list-style: none;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.clock > .sec {
+  margin-right: 50px;
+}
+
+.clock > .time-zone {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.clock > .ampm {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.main-wrapper {
+  display: grid;
+  position: absolute;
+  grid-template-columns: 32% 0.8fr 1.2fr;
+  grid-template-rows: 15% 85%;
+  height: 100%;
+  width: 100%;
+
+  grid-template-areas: 
+  "profile-container gallery-container display-container"
+  "nav-container gallery-container display-container";
+}
+.profile-container {
+  grid-area: profile-container;
+  /* border-bottom: 1px solid #000; */
+  font-family: 'BluePrinted', sans-serif;
+  padding-left: 30px;
+  padding-top: 30px;
+  min-width: 300px;
+}
+
+.profile-container > .name {
+  /* font-weight: bold; */
+  display: flex;
+  font-size: 30pt;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* flex-shrink: 0; */
+}
+
+.profile-container > .title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 10pt;
+}
+
+.nav-container {
+  grid-area: nav-container;
+  position: relative;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 12pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav-container > ul > li {
+  list-style: none;
+  padding-left: 30px;
+}
+
+.nav-menu {
+  /* margin-left: 20px; */
+}
+.nav-menu > li > a {
+  color: black;
+  text-decoration: none;
+}
+
+.night-mode {
+  display: flex;
+  margin: 10px 10px;
+  font-size: 14px;
+}
+
+.parent-container.dark-mode {
+  background-color: #17501a;
+}
+
+.night-mode-button {
+  background-color: #a03e3e;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.night-mode-button::before {
+  position: absolute;
+  content: '';
+  background-color: aqua;
+  height: 14px;
+  width: 14px;
+  border-radius: 14px;
+  margin: 3px;
+  transition: transform 0.3s ease;
+}
+
+input:checked + .night-mode-button {
+  background-color: #000;
+}
+
+.night-mode > input {
+  display: none;
+}
+
+#darkmode:checked + .night-mode-button::before {
+  transform: translateX(20px);
+}
+
+.gallery-container {
+  grid-area: gallery-container;
+  position: relative;
+  border: 1px solid black;
+  
+  max-height: 100%; /* Adjust to the height you want */
+  overflow-y: auto;  /* Enables vertical scroll */
+  scrollbar-width: none; /* Firefox */
+}
+
+.gallery-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.gallery-container > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  gap: 10px; /* Optional spacing between items */
+}
+
+.gallery-container li {
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  /* width: 100%;
+  height: 300px;   
+  object-fit: cover; */
+}
+
+
+
+
+.display-container {
+  grid-area: display-container;
+  background-color: #eee;
+  border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1280px) {
+  body {
+    border: 3vh solid #e6e6e6;
+  }
+
+  .profile-container {
+    padding-left: 15px;
+    padding-top: 15px;
+  }
+
+  .profile-container > .name {
+    font-size: 20pt;
+  }
+
+  .nav-container > ul > li {
+    padding-left: 15px;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1050px) {
+  body {
+    border: 2vh solid #e6e6e6;
+  }
+}
