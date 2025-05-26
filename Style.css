@@ -194,7 +194,7 @@ body {
   font-size: 10pt;
 }
 
-/* === Nav Style === */
+/* === Nav Style === */ 
 .nav-container {
   grid-area: nav-container;
   position: relative;
