@@ -12,12 +12,43 @@
   src: url('BluePrinted.ttf') format('truetype');
 }
 
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes autosize {
+  0% {
+    scale: 0.5;
+  }
+  50% {
+    scale: 1;
+  }
+  75% {
+    scale: 1;
+  }
+  100% {
+    scale: 0.5;;
+  }
+}
+
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 40px solid #e6e6e6;
+  overflow: hidden; /* Hides any accidental overflow */
+  transition: background-color 0.3s ease;
 }
 
 /* === Preloader Container === */
@@ -50,26 +81,6 @@ html, body {
   animation: fadeInSlide 1s ease forwards;
 }
 
-/* === Animation Keyframes === */
-@keyframes fadeInSlide {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.parent-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  border: 1px solid black;
-  background-color: #e6e6e6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
 #lineCanvas {
   position: absolute;
   top: 0;
@@ -78,19 +89,9 @@ html, body {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  /* border: 5px solid #d61c1c; */
-
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 40px solid #e6e6e6;
-  overflow: hidden; /* Hides any accidental overflow */
-  transition: background-color 0.3s ease;
-}
-
+/* === Clock Style === */
 .clock-container {
   position: absolute;
   top: 15px;
@@ -146,6 +147,19 @@ body {
   text-align: right;
 }
 
+/* === Parent Style === */
+.parent-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  background-color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .main-wrapper {
   display: grid;
   position: absolute;
@@ -158,6 +172,8 @@ body {
   "profile-container gallery-container display-container"
   "nav-container gallery-container display-container";
 }
+
+/* === Profile Style === */
 .profile-container {
   grid-area: profile-container;
   /* border-bottom: 1px solid #000; */
@@ -168,13 +184,9 @@ body {
 }
 
 .profile-container > .name {
-  /* font-weight: bold; */
   display: flex;
   font-size: 30pt;
   white-space: nowrap;
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
-  /* flex-shrink: 0; */
 }
 
 .profile-container > .title {
@@ -182,6 +194,7 @@ body {
   font-size: 10pt;
 }
 
+/* === Nav Style === */
 .nav-container {
   grid-area: nav-container;
   position: relative;
@@ -198,14 +211,18 @@ body {
   padding-left: 30px;
 }
 
-.nav-menu {
-  /* margin-left: 20px; */
-}
 .nav-menu > li > a {
   color: black;
   text-decoration: none;
 }
 
+.nav-menu > li > a:hover {
+  color: #a4a5a4;
+  /* font-size: 13pt;
+  font-weight: bold; */
+}
+
+/* === Darkmode Style === */
 .night-mode {
   display: flex;
   margin: 10px 10px;
@@ -248,18 +265,20 @@ input:checked + .night-mode-button {
   transform: translateX(20px);
 }
 
+/* === Gallery Style === */
 .gallery-container {
+  z-index: 1;
   grid-area: gallery-container;
   position: relative;
-  border: 1px solid black;
+  border-right: 1px solid black;
   
-  max-height: 100%; /* Adjust to the height you want */
-  overflow-y: auto;  /* Enables vertical scroll */
-  scrollbar-width: none; /* Firefox */
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .gallery-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 .gallery-container > ul {
@@ -267,8 +286,8 @@ input:checked + .night-mode-button {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* Ensure vertical stacking */
-  gap: 10px; /* Optional spacing between items */
+  flex-direction: column;
+  gap: 10px;
 }
 
 .gallery-container li {
@@ -279,22 +298,30 @@ input:checked + .night-mode-button {
 }
 
 .image-wrapper img {
+  filter: grayscale(50%);
   width: 100%;
   height: auto;
   display: block;
   cursor: pointer;
-  /* width: 100%;
-  height: 300px;   
-  object-fit: cover; */
+
+  transform-origin: right center;
+
+  animation: autosize linear;
+  animation-timeline: view();
+  animation-range: entry 0 exit 100;
+
+  transition: scale 0.3s ease, filter 0.3s ease;
+}
+
+.image-wrapper img:hover {
+  filter: grayscale(0%);
 }
 
 
 
-
+/* === Display Style === */
 .display-container {
   grid-area: display-container;
-  background-color: #eee;
-  border: 1px solid black;
 }
 
 
