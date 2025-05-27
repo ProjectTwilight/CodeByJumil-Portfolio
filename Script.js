@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const target = this.getAttribute('href');
 
             // Toggle active class for animation
-            if (target === '#/work/' || target === '/work/' || target === '#work') {
+            if (target === '#work') {
                 gallery.classList.add('active');
             } else {
                 gallery.classList.remove('active');
