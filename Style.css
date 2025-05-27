@@ -422,6 +422,11 @@ input:checked + .night-mode-button {
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
+  overflow-y: auto;
+}
+
+.about-container::-webkit-scrollbar {
+  display: none;
 }
 
 .about-container.active {
@@ -429,7 +434,9 @@ input:checked + .night-mode-button {
   pointer-events: auto;
 }
 
-
+.profile-picture > img {
+  height: 150px;
+}
 
 
 
