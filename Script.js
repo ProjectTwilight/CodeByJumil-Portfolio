@@ -2,35 +2,44 @@
 // Navigation and Gallery Toggling
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll('.nav-menu a');
-    const gallery = document.querySelector('.gallery-container');
+
+    const allContainers = {
+        home: [document.querySelector('.left-home-container'), document.querySelector('.right-home-container')],
+        work: [document.querySelector('.gallery-container'), document.querySelector('.display-container')],
+        about: [document.querySelector('.about-container')],
+        services: [document.querySelector('.services-container')]
+    };
+
+    const allElements = Object.values(allContainers).flat();
+
+    function activateSection(sectionKey) {
+        // Hide all elements
+        allElements.forEach(el => el?.classList.remove('active'));
+
+        // Activate only the selected section elements
+        if (allContainers[sectionKey]) {
+            allContainers[sectionKey].forEach(el => el?.classList.add('active'));
+        }
+
+        // Update the URL
+        history.pushState(null, '', `#${sectionKey}`);
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = this.getAttribute('href');
-
-            // Toggle active class for animation
-            if (target === '#work') {
-                gallery.classList.add('active');
-            } else {
-                gallery.classList.remove('active');
-            }
-
-            // Update URL without reloading
-            history.pushState(null, '', target);
+            const target = this.getAttribute('href').replace('#', '');
+            activateSection(target);
         });
     });
 
-    // Handle back/forward browser buttons
     window.addEventListener('popstate', () => {
-        const path = location.pathname || location.hash;
-        if (path === '/home/' || path === '#/home/' || path === '#home') {
-            gallery.classList.add('active');
-        } else {
-            gallery.classList.remove('active');
-        }
+        const path = location.hash.replace('#', '');
+        activateSection(path);
     });
 });
+
+
 
 
 // Preloader Function
