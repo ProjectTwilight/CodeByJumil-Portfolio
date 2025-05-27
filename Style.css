@@ -275,10 +275,22 @@ input:checked + .night-mode-button {
   max-height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
+
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
 }
 
 .gallery-container::-webkit-scrollbar {
   display: none;
+}
+
+.gallery-container.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .gallery-container > ul {
