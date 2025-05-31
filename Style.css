@@ -423,6 +423,20 @@ input:checked + .night-mode-button {
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
   overflow-y: auto;
+  
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.profile-title {
+  margin-top: 8rem;
+}
+
+.about-title {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 0;
 }
 
 .about-container::-webkit-scrollbar {
@@ -434,11 +448,50 @@ input:checked + .night-mode-button {
   pointer-events: auto;
 }
 
+.profile-picture {
+  display: flex;
+}
 .profile-picture > img {
   height: 150px;
+  margin-right: 20px;
 }
 
+.profile-links > ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0;
+}
 
+.profile-links > ul li a {
+  background-color: #17501a;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.profile-education > h1 {
+  margin-top: 8rem;
+}
+
+.profile-education > ul > li > div{
+  margin: 1rem 1rem 1rem 0;
+}
+
+.profile-work-history > h1 {
+  margin-top: 8rem;
+}
+
+.profile-work-history > ul > li > div{
+  margin: 1rem 1rem 1rem 0;
+}
+
+.profile-contacts > h1 {
+  margin-top: 8rem;
+}
 
 @media only screen and (max-width: 1280px) {
   body {
