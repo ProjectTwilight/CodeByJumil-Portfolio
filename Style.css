@@ -338,16 +338,19 @@ input:checked + .night-mode-button {
   grid-area: display-container;
   z-index: 1;
   position: relative;
-  background-color: #17501a;
+  /* background-color: #17501a; */
   
   max-height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
 
-  display: block;
+  display: flex;
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
+
+  justify-content: center;
+  align-items: center;
 }
 
 .display-container.active {
@@ -355,13 +358,49 @@ input:checked + .night-mode-button {
   pointer-events: auto;
 }
 
+.display-container img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
+  padding: 20px;
+  object-fit: contain;
+}
+
+#preview-image {
+  margin: 0 auto; /* Center horizontally */
+  width: 75%;
+  height: auto;
+  transform: perspective(800px) rotateY(-20deg);
+  transition: transform 0.3s ease;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.image-title {
+  z-index: 10;
+  position: absolute;
+  bottom: 5rem;
+  left: 5rem;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 50pt;
+  color: #000000;
+  letter-spacing: 2pt;
+  white-space: nowrap;
+  overflow: hidden;
+
+  transform: perspective(800px) rotateY(25deg);
+  transition: transform 0.3s ease;
+}
+
 /* === Left Home Style === */
 .left-home-container {
   grid-area: gallery-container;
   z-index: 1;
   position: relative;
-  border-left: 1px solid #000000;
-  background-color: #d87d7d;
+  /* border-left: 1px solid #000000; */
 
   display: block;
   opacity: 0;
@@ -379,8 +418,7 @@ input:checked + .night-mode-button {
   grid-area: display-container;
   z-index: 1;
   position: relative;
-  border-left: 1px solid #000000;
-  background-color: #978080;
+  /* border-left: 1px solid #000000; */
 
   display: block;
   opacity: 0;
@@ -391,6 +429,17 @@ input:checked + .night-mode-button {
 .right-home-container.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+.right-home-container > .quote {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  right: 1.5rem;
+  bottom: 1.5rem;
+  
+  gap: 1rem;
 }
 
 /* === Services Style === */
@@ -481,8 +530,16 @@ input:checked + .night-mode-button {
   margin: 1rem 1rem 1rem 0;
 }
 
+.profile-education ul li {
+  list-style: none;
+}
+
 .profile-work-history > h1 {
   margin-top: 8rem;
+}
+
+.profile-work-history ul li {
+  list-style: none;
 }
 
 .profile-work-history > ul > li > div{
@@ -492,6 +549,18 @@ input:checked + .night-mode-button {
 .profile-contacts > h1 {
   margin-top: 8rem;
 }
+
+.profile-contacts > h4 {
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 1280px) {
   body {

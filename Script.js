@@ -143,19 +143,50 @@ function clock() {
 
 setInterval(clock, 400);
 
-// // Optional Update Time and Date Again — if needed
-// function updateDateTime() {
-//     const now = new Date();
-//     const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-//     const formattedDate = now.toLocaleDateString(undefined, dateOptions);
-//     const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-//     const formattedTime = now.toLocaleTimeString(undefined, timeOptions);
 
-//     const dateElem = document.getElementById('date');
-//     const timeElem = document.getElementById('time');
+// Image Preview
+function setupImagePreview(gallerySelector, imageId, titleId) {
+  const galleryImages = document.querySelectorAll(gallerySelector);
+  const previewImage = document.getElementById(imageId);
+  const imageTitle = document.getElementById(titleId);
 
-//     if (dateElem) dateElem.textContent = formattedDate;
-//     if (timeElem) timeElem.textContent = formattedTime;
-// }
+  galleryImages.forEach(img => {
+    const title = img.getAttribute('alt') || img.getAttribute('data-title') || 'Untitled';
 
-// setInterval(updateDateTime, 1000);
+    img.addEventListener('mouseenter', () => {
+      if (previewImage) {
+        previewImage.src = img.src;
+        previewImage.style.display = 'block';
+      }
+
+      if (imageTitle) {
+        runHackerTextEffect(imageTitle, title);
+      }
+    });
+  });
+}
+
+function runHackerTextEffect(element, finalText) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*';
+  let displayText = '';
+  let frame = 0;
+  const scramble = setInterval(() => {
+    displayText = finalText
+      .split('')
+      .map((char, i) => {
+        if (i < frame) return char;
+        return chars[Math.floor(Math.random() * chars.length)];
+      })
+      .join('');
+    element.textContent = displayText;
+    frame += 1;
+
+    if (frame > finalText.length) {
+      clearInterval(scramble);
+    }
+  }, 50);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupImagePreview('.image-wrapper img', 'preview-image', 'image-title');
+});
