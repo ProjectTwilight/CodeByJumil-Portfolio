@@ -375,7 +375,7 @@ input:checked + .night-mode-button {
   transition: transform 0.3s ease;
   border: 2px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  /* box-shadow: 0 10px 20px rgba(0,0,0,0.2); */
 }
 
 .image-title {
@@ -393,6 +393,17 @@ input:checked + .night-mode-button {
 
   transform: perspective(800px) rotateY(25deg);
   transition: transform 0.3s ease;
+}
+
+.placeholder {
+  z-index: 100;
+  position: absolute;
+  background-color: #000000;
+  height: 87%;
+  width: 75%;
+  border-radius: 10px;
+  transform: perspective(800px) rotateY(-20deg);
+  opacity: 0.5;
 }
 
 /* === Left Home Style === */
