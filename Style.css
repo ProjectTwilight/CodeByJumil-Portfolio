@@ -71,7 +71,9 @@ body {
 }
 
 .title > span {
+  font-family: 'TWKEverett';
   color: #91081f;
+  font-size: 12pt;
 }
 
 /* === Navigation Styling */
