@@ -8,12 +8,12 @@
 
 @font-face {
   font-family: 'BluePrinted';
-  src: url('/fonts/BluePrinted.ttf') format('truetype');
+  src: url('fonts/BluePrinted.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TWKEverett';
-  src: url('/fonts/TWKEverett/TWKEverett-Regular.otf') format('opentype');
+  src: url('fonts/TWKEverett/TWKEverett-Regular.otf') format('opentype');
 }
 
 @keyframes fadeInSlide {
@@ -124,7 +124,7 @@ body {
 .preloader-text {
   font-size: 2.5vw;
   font-weight: bold;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'TWKEverett';
   color: white;
   text-shadow: 0 0 10px #91081f, 0 0 20px #91081f;
   opacity: 0;
@@ -142,7 +142,7 @@ body {
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
   position: relative;
-  z-index: 1;
+  z-index: -1;
 
   background-image: url('/sources/scanline.png');
   background-repeat: repeat;
@@ -151,7 +151,7 @@ body {
 
 /* === Tagline Styling */
 .tagline {
-  font-family: TWKEverett;
+  font-family: 'TWKEverett';
   font-style: italic;
   position: absolute;
   left: 35px;
