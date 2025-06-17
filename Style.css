@@ -40,6 +40,10 @@ body {
   /* background-size: 100% 100%; */
   background-color: #0d0d0d;
   transition: background-color 0.3s ease;
+  padding-top: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 }
 
 /* === HEADING Styling */
@@ -134,17 +138,14 @@ body {
 
 /* === Main-Container Styling */
 .main-container {
-  width: 98%;
-  height: 95%;
-  margin-top: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   border: 1px solid #e6e6e6;
   box-sizing: border-box;
-  position: relative;
   z-index: -1;
 
-  background-image: url('/sources/scanline.png');
+  background-image: url('sources/scanline.png');
   background-repeat: repeat;
   background-size: 10px;
 }
@@ -170,7 +171,7 @@ body {
 .clock-container {
   position: absolute;
   top: 15px;
-  right: 40px;
+  right: 18px;
   z-index: 10;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
