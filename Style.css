@@ -152,9 +152,10 @@ body {
 /* === Tagline Styling */
 .tagline {
   font-family: TWKEverett;
+  font-style: italic;
   position: absolute;
   left: 35px;
-  bottom: 65px;
+  bottom: 50px;
   color: #ffffff;
 }
 
