@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
             preloader.style.opacity = '0';
             setTimeout(() => {
                 preloader.style.display = 'none';
-            }, 2000);
+            }, 1000);
         }, 1500);
     }
 });
@@ -47,3 +47,29 @@ function clock() {
 }
 
 setInterval(clock, 400);
+
+
+function activateSection(id){
+  /* 1 – nav highlight */
+  document.querySelectorAll('.nav-menu li').forEach(li => li.classList.remove('active'));
+  const li = document.querySelector('.nav-menu a[href="#'+id+'"]').parentElement;
+  li.classList.add('active');
+
+  /* 2 – show / hide content panes */
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+  const section = document.getElementById(id);
+  if(section) section.classList.add('active-section');
+}
+
+/* default: Home is active the moment DOM is ready */
+document.addEventListener('DOMContentLoaded', () => {
+  activateSection('home');
+
+  /* hook up every nav link */
+  document.querySelectorAll('.nav-menu a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();                 // stay on same page
+      activateSection(a.getAttribute('href').substring(1)); // remove the “#”
+    });
+  });
+});

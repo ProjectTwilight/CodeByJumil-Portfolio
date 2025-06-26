@@ -105,11 +105,21 @@ body {
   text-decoration: none;
 }
 
+.nav-menu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .nav-menu > li > a:hover {
   color: #91081f;
   /* font-size: 13pt;
   font-weight: bold; */
 }
+
+.nav-menu li.active > a {
+  color: #91081f;
+}
+
 
 /* === Preloader Container === */
 #preloader {
@@ -138,8 +148,8 @@ body {
   animation: fadeInSlide 1s ease forwards;
 }
 
-/* === Main-Container Styling */
-.main-container {
+/* === background-Container Styling */
+.background-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -150,6 +160,63 @@ body {
   background-image: url('sources/scanline.png');
   background-repeat: repeat;
   background-size: 10px;
+}
+
+/* === Main Container Styling */
+.main-container {
+  display: grid;
+  position: absolute;
+  grid-template-columns: 1fr 1fr 2.5fr;
+  height: 100%;
+  width: 100%;
+
+  grid-template-areas: 
+  "blank left right"
+}
+
+/* === Section Styling */
+.section {
+  opacity: 0;
+  display: none;
+  color: #ffffff;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.active-section {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* === Work Section */
+.works-container {
+  position: relative;
+  grid-area: right;
+  background-color: #0d0d0d;
+  border-left: #e6e6e6 1px solid;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content:end;
+  align-items: center;
+}
+
+.work-placeholder {
+  position: relative;
+  width: 75%;
+  aspect-ratio: 1 / .80;
+  border: 1px solid #e6e6e6;
+
+  background-image: url('sources/scanline.png');
+  background-repeat: repeat;
+  background-size: 10px;
+  margin-right: 7.5%;
+
+  transform: perspective(800px) rotateY(-15deg);
+  transition: transform 0.3s ease;
 }
 
 /* === Tagline Styling */
