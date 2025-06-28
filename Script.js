@@ -46,9 +46,9 @@ function clock() {
     document.getElementById('time').innerHTML = ampm;
 }
 
-setInterval(clock, 400);
+setInterval(clock, 1000);
 
-
+//Navitation Switching Function
 function activateSection(id){
   /* 1 – nav highlight */
   document.querySelectorAll('.nav-menu li').forEach(li => li.classList.remove('active'));
